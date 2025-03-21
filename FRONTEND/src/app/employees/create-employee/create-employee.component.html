@@ -1,0 +1,54 @@
+<div class="popup-content">
+    <h3>Create Employee</h3>
+    <form [formGroup]="createEmployeeForm" (ngSubmit)="createEmployee()">
+        <div fxLayout fxLayoutGap="20px">
+            <mat-form-field appearance="fill">
+                <mat-label>First Name</mat-label>
+                <input matInput type="text" formControlName="first_name">
+                <mat-error>{{getErrorMessage('first_name')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Last Name</mat-label>
+                <input matInput type="text" formControlName="last_name">
+                <mat-error>{{getErrorMessage('last_name')}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div fxLayout fxLayoutGap="20px">
+            <mat-form-field appearance="fill">
+                <mat-label>Employee type</mat-label>
+                <mat-select formControlName="is_internal" (selectionChange)="toggleValidator()">
+                    <mat-option [value]="true">Internal</mat-option>
+                    <mat-option [value]="false">External</mat-option>
+                </mat-select>
+                <mat-error>{{getErrorMessage('is_internal')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" *ngIf="isExternalEmployee()">
+                <mat-label>External Organization</mat-label>
+                <input matInput type="text" formControlName="ext_organization">
+                <mat-error>{{getErrorMessage('ext_organization')}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div fxLayout fxLayoutGap="20px">
+            <mat-form-field appearance="fill">
+                <mat-label>Date of birth</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="dob" readonly>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error>{{getErrorMessage('dob')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email">
+                <mat-error>{{getErrorMessage('email')}}</mat-error>
+            </mat-form-field>
+        </div>
+        
+        <div fxLayout fxLayoutAlign="space-between">
+            <button mat-stroked-button mat-dialog-close [disabled]="isLoading">Cancel</button>
+            <button type="submit" mat-raised-button color="primary" [disabled]="isLoading">
+                <span *ngIf="!isLoading">Create</span>
+                <mat-spinner color="accent" *ngIf="isLoading" diameter="20"></mat-spinner>
+            </button>
+        </div>
+    </form>
+</div>

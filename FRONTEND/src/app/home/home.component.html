@@ -1,0 +1,135 @@
+<section id="home">
+    <nav>
+        <div class="logo">
+            <img src="/assets/images/logo.png" alt="Logo">
+        </div>
+        <div class="nav-links">
+            <a href="/support">Support</a>
+            <a routerLink="/login" *ngIf="!user">Login</a>
+            <a routerLink="/dashboard" *ngIf="user">Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="text-section">
+            <h2>Direct zekerheid: Verifieer diploma's in slechts enkele seconden.</h2>
+            <p>Controleer de echtheid van diploma’s razendsnel en zonder moeite.</p>
+            <p>Voor DUO-diploma’s bieden wij 100% betrouwbare verificatie, zodat uw organisatie altijd beschermd is tegen risico’s.</p>
+            <div class="container-button">
+                <button class="btn-primary">
+                    <a routerLink="/register" style="text-decoration: none; color: inherit;">
+                        AANMELDEN
+                    </a>
+                </button>
+
+                <button class="btn-secondary"><a routerLink="/login" style="text-decoration: none; color: inherit;">
+                    LOGIN
+                </a></button>
+            </div>
+        </div>
+        <div class="image-section">
+            <img src="/assets/images/johndoe.png" alt="Johndoe Image">
+        </div>
+    </div>
+
+    <section class="card-section">
+        <h2>Zijn de diploma's van uw medewerkers wel echt?</h2>
+        <div class="cards-container">
+            <div class="card">
+                <h3>Innovatieve verificatie</h3>
+                <p>Bij Docuscreen bieden we als eerste platform realtime digitale diploma-verificatie. Met 100% controle op DUO-uittreksels garanderen we snelheid en eenvoud, zodat u met zekerheid de juiste keuzes maakt.</p>
+            </div>
+            <div class="card">
+                <h3>Bulkverzoeken</h3>
+                <p>Met één simpele actie controleert u diploma’s van uw medewerkers, individueel of in bulk. Docuscreen is ontworpen voor moeiteloze schaalbaarheid, zodat u tijd bespaart en zekerheid krijgt, ongeacht de grootte van uw organisatie.</p>
+            </div>
+            <div class="card">
+                <h3>Naadloze integratie, maximale controle</h3>
+                <p>Met onze flexibele API integreert u moeiteloos geverifieerde documenten in uw eigen software. Automatiseer, optimaliseer, en werk efficiënter – allemaal met minimale inspanning.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="pricing-wrapper">
+        <section class="pricing-section">
+            <h2 class="section-header">Kies het pakket dat perfect bij uw organisatie past.</h2>
+            <div class="pricing-container">
+                <div class="pricing-card">
+                    <h3 style="color: #004080; font: size 32px;line-height:32px;font-weight:600;font-family:Montserrat, sans-serif;">Balance</h3>
+                    <B><p>Meest gekozen</p></B>
+                    <p><b>75 requests </b>/ maand</p>
+                    <p>Extra request - € 9,18</p>
+                    <p style="font-size: 32px;font-weight:600;color:rgb(3, 3, 3);line-height:32px;font-family:Montserrat, sans-serif;">€ 581,25</p>
+                    <p>Per maand</p>
+                    <button class="btn-primary" routerLink="/register" [queryParams]="{ package: 'BALANCE' }">AANVRAGEN</button>
+                </div>
+                <div class="pricing-card">
+                    <h3 style="color: #004080; font: size 32px;line-height:32px;font-weight:600;font-family:Montserrat, sans-serif;">Basic</h3>
+                    <B><p>Voor incidenteel gebruik</p></B>
+                    <p><b>10 requests </b>/ maand</p>
+                    <p>Extra request - € 9,18</p>
+                    <p style="font-size: 32px;font-weight:600;color:rgb(3, 3, 3);line-height:32px;font-family:Montserrat, sans-serif;">€ 147,75</p>
+                    <p>Per maand</p>
+                    <button class="btn-primary" routerLink="/register" [queryParams]="{ package: 'BASIC' }">AANVRAGEN</button>
+                </div>
+                <div class="pricing-card">
+                    <h3 style="color: #004080; font: size 32px;line-height:32px;font-weight:600;font-family:Montserrat, sans-serif;">Advanced</h3>
+                    <B><p>Voor groeiende organisaties</p></B>
+                    <p><b>125 requests </b>/ maand</p>
+                    <p>Extra request - € 7,33</p>
+                    <p style="font-size: 32px;font-weight:600;color:rgb(3, 3, 3);line-height:32px;font-family:Montserrat, sans-serif;">€ 791,50</p>
+                    <p>Per maand</p>
+                    <button class="btn-primary" routerLink="/register" [queryParams]="{ package: 'ADVANCED' }">AANVRAGEN</button>
+                </div>
+                <div class="pricing-card">
+                    <h3 style="color: #004080; font: size 32px;line-height:32px;font-weight:600;font-family:Montserrat, sans-serif;">Custom Pro</h3>
+                    <B><p>Maatwerk voor grote organisaties
+                        Prijs op aanvraag</p></B>
+
+                        <p class="pro-desc">Onze preium oplossing met maatwerk. Krijg toegang tot een API-koppeling en integreer verificaties moeiteloos in uw eigen systemen. Perect voor organisatie die schaalbaarheid en flexibiliteit nodig hebben</p>
+
+                        <button class="btn-primary" routerLink="/register">AANVRAGEN</button>
+                    </div>
+            </div>
+        </section>
+    </div>
+    <section class="why-choose-section">
+        <h2 class="section-header">Waarom organisaties voor Docuscreen kiezen</h2>
+        <div class="why-cards-container">
+            <div class="why-card">
+                <h3>Vertrouwen in onze technologie</h3>
+                <p>Onze diploma-verificaties zijn gebaseerd op directe koppelingen met DUO, wat 100% betrouwbare
+                    resultaten garandeert. Werkgevers besparen tijd en krijgen zekerheid in hun screeningsprocessen.</p>
+            </div>
+            <div class="why-card">
+                <h3>Eenvoudig en snel</h3>
+                <p>Met slechts één klik kunt u diploma’s verifiëren, individueel of in bulk. Ontworpen om moeiteloos te integreren in de workflow van elke organisatie.</p>
+            </div>
+            <div class="why-card">
+                <h3>Gericht op veiligheid</h3>
+                <p>Docuscreen helpt organisaties risico’s te vermijden door diploma’s
+                    snel en accuraat te controleren, zodat u altijd zeker bent van de juiste medewerkers</p>
+            </div>
+        </div>
+    </section>
+    <footer class="footer-section">
+        <div class="footer-content">
+
+            <div class="footer-left">
+                <img src="/assets/images/logo-alt.png" alt="Docuscreen Logo" class="footer-logo">
+                <p class="footer-description">
+                    Docuscreen is een online tool waarmee je eenvoudig de echtheid van diploma’s kunt verifiëren.
+                </p>
+            </div>
+
+
+            <div class="footer-right">
+                <h3>Contactgegevens</h3>
+                <p>Beesdseweg 5</p>
+                <p>4104 AW Culemborg</p>
+                <p>088 12345678</p>
+                <p><a href="mailto:info@docuscreen.nl" class="footer-email">info&#64;docuscreen.nl</a></p>
+            </div>
+        </div>
+    </footer>
+</section>

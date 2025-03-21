@@ -1,0 +1,56 @@
+<div class="page-header" fxLayout fxLayoutAlign="space-between center">
+    <h2>Uploads</h2>
+    <button mat-mini-fab color="primary" [matMenuTriggerFor]="menu" matTooltip="Send upload request" [disabled]="isProcessingAction"><mat-icon>add</mat-icon></button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="sendUploadRequest()">Single user</button>
+      <button mat-menu-item (click)="downloadTemplate()">Download bulk template</button>
+      <button mat-menu-item (click)="fileUpload.click()">Send bulk</button>
+    </mat-menu>
+    <input class="hidden" type="file" (change)="onFileSelected($event)" #fileUpload accept=".xlsx, .xls, .csv">
+</div>
+<mat-card>
+  <div class="table-container">
+      <table mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="user">
+            <th mat-header-cell *matHeaderCellDef> Organization </th>
+            <td mat-cell *matCellDef="let upload"> {{upload.user.name}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="uploaded_by">
+            <th mat-header-cell *matHeaderCellDef> Uploaded By </th>
+            <td mat-cell *matCellDef="let upload">
+              <div fxLayout="column" fxLayoutGap="4px" class="patient-cell">
+                <span>{{upload.name}}</span>
+                <span class="sec">{{upload.email}}</span>
+              </div>
+            </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="created_at">
+            <th mat-header-cell *matHeaderCellDef> Uploaded At </th>
+            <td mat-cell *matCellDef="let upload"> {{upload.created_at | date: 'medium'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let upload">
+              <div class="table-actions">
+                <button mat-icon-button color="primary" (click)="downloadDocument(upload.document_url)" matTooltip="Download file">
+                  <mat-icon>download</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="deleteUpload(upload.id)" matTooltip="Delete upload">
+                    <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let upload; columns: displayedColumns;"></tr>
+      </table>
+      <div class="empty-table" *ngIf="!isLoading && !dataSource.data.length">No uploads found.</div>
+      <mat-spinner class="table-loader" [diameter]="30" color="accent" *ngIf="isLoading"></mat-spinner>
+    </div>
+</mat-card>
+<mat-paginator [pageSizeOptions]="[20, 50, 100]" [showFirstLastButtons]="true"
+                [disabled]="isLoading || !paginator.length"></mat-paginator>

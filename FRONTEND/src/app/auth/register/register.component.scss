@@ -1,0 +1,45 @@
+@import '../../theme/theme.scss';
+
+section {
+    max-width: 720px;
+    margin: auto;
+    padding: 50px 15px;
+    background-color: #fff;
+}
+
+.logo {
+    width: 160px;
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+form button {
+    width: 50%;
+    margin-top: 12px;
+}
+
+.form-footer {
+    margin-top: 100px;
+    color: #7a7a7a;
+    font-size: 12px;
+}
+
+.alternate {
+    margin-top: 40px;
+    color: #7a7a7a;
+
+    button {
+        width: 50%;
+    }
+}
+
+.submit {
+    text-align: center;
+
+    button {
+        width: 50%;
+    }
+}

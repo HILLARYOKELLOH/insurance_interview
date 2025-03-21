@@ -1,0 +1,10 @@
+<div id="home" fxLayout fxLayoutAlign="center center">
+    <div class="content">
+        <img src="/assets/images/home.jpg">
+        <p>Welcome {{getName()}}, to the <span>DOCUSCREEN Portal</span></p>
+        <div class="requests" *ngIf="user.user.account_type === 'EMPLOYER'">
+            <p>Requests this month:</p>
+            <h1>{{requestLogs.length ? requestLogs[0].count : 0}}</h1>
+        </div>
+    </div>
+</div>

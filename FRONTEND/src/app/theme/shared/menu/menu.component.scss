@@ -1,0 +1,94 @@
+@import '../../theme.scss';
+
+#menu {
+    box-sizing: border-box;
+    height: calc(100% - 60px);
+    width: 100%;
+    padding: 0 8px;
+    font-size: 12px;
+    overflow: hidden;
+
+    mat-accordion {
+        height: 100%;
+        overflow: hidden;
+        
+        mat-nav-list {
+            a {
+                height: 40px;
+                padding: 0 12px;
+                border-radius: 8px;
+                margin-bottom: 8px;
+
+                &.active {
+                    background-color: map-get($primary, 50);
+
+                    mat-icon {
+                        color: map-get($primary, A700);
+                    }
+                }
+
+                &.highlighted {
+                    background-color: map-get($accent, 50);
+
+                    mat-icon {
+                        color: map-get($accent, A700);
+                    }
+                }
+            }
+        }
+
+        mat-expansion-panel {
+            box-shadow: none;
+            margin-bottom: 0;
+
+            mat-expansion-panel-header {
+                height: 40px;
+                padding: 0 12px;
+
+                &.active {
+                    mat-icon {
+                        color: map-get($primary , A700);
+                    }
+                }
+            }
+
+            ::ng-deep .mat-expansion-panel-body {
+                padding: 0 16px !important;
+            }
+        }
+
+        .menu-item-content {
+            font-size: 12px;
+            font-weight: 500;
+            color: #555;
+
+            mat-icon {
+                font-size: 20px;
+            }
+
+            .mat-icon {
+                height: 20px;
+                width: 20px;
+            }
+        }
+    }
+
+    &.closed {
+        span.label {
+            display: none;
+        }
+
+        ::ng-deep .mat-expansion-indicator {
+            display: none !important;
+        }
+
+        .menu-item-content {
+            width: 100%;
+            justify-content: center !important;
+
+            mat-icon {
+                margin-right: 0 !important;
+            }
+        }
+    }
+}

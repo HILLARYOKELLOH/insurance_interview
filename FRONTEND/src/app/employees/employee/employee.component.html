@@ -1,0 +1,138 @@
+<div [class.employeeUser]="!isAuthenticated">
+  <div *ngIf="!isAuthenticated">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="logo">DOCU<span>SCREEN</span></span>
+      <!-- <img src="/assets/images/logo.png" class="logo"> -->
+    </div>
+  </div>
+  <div fxLayout fxLayoutAlign="space-between" class="page-header"> 
+    <h2>Employee Details</h2>
+    <button mat-stroked-button [matMenuTriggerFor]="menu" *ngIf="isAuthenticated">
+      <div fxLayout fxLayoutAlign="default center" fxLayoutGap="40px">
+          <span>Actions</span>
+          <mat-icon>expand_more</mat-icon>
+      </div>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="editEmployee()" [disabled]="isLoadingEmployee">Edit employee</button>
+      <button mat-menu-item (click)="deleteEmployee()" [disabled]="isLoadingEmployee">Delete employee</button>
+    </mat-menu>
+  </div>
+  <mat-spinner [diameter]="32" color="accent" *ngIf="isLoadingEmployee"></mat-spinner>
+  <mat-card class="user-details" *ngIf="!isLoadingEmployee">
+    <div class="card-title" fxLayout fxLayoutGap="4px" fxLayoutAlign="default center">
+      <mat-icon>feed</mat-icon>
+      <h3>Basic Information</h3>
+    </div>
+    <div fxLayout class="keyValueItems">
+      <div class="item" fxFlex="25">
+        <div class="label">Name</div>
+        <div class="value">{{employee.first_name}} {{employee.last_name}}</div>
+      </div>
+      <div class="item" fxFlex="25">
+        <div class="label">Employee type</div>
+        <div class="value">{{employee.is_internal ? 'Internal' : 'External'}}</div>
+      </div>
+      <div class="item" fxFlex="25" *ngIf="!employee.is_internal">
+        <div class="label">External Organization</div>
+        <div class="value">{{employee.ext_organization}}</div>
+      </div>
+      <div class="item" fxFlex="25">
+        <div class="label">Created At</div>
+        <div class="value">{{employee.created_at | date}}</div>
+      </div>
+    </div>
+    <div fxLayout class="keyValueItems">
+      <div class="item" fxFlex="25">
+        <div class="label">Email</div>
+        <div class="value">{{employee.email}}</div>
+      </div>
+      <div class="item" fxFlex="25">
+        <div class="label">Date of Birth</div>
+        <div class="value">{{employee.dob | date}}</div>
+      </div>
+    </div>
+  </mat-card>
+  <div fxLayout fxLayoutAlign="space-between center" class="page-header">
+    <h2>Submission Requests</h2>
+    <button mat-raised-button color="primary" (click)="createSubmissionRequest()" *ngIf="isAuthenticated">
+      SEND REQUEST
+    </button>
+  </div>
+  <mat-card>
+    <div class="table-container">
+        <table mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="document_title">
+            <th mat-header-cell *matHeaderCellDef> Document Title </th>
+            <td mat-cell *matCellDef="let request"> {{request.document_title}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="created_at">
+            <th mat-header-cell *matHeaderCellDef> Created At </th>
+            <td mat-cell *matCellDef="let request"> {{request.created_at | date}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let request">
+              <div class="table-actions">
+                <button mat-icon-button color="primary" matTooltip="Mark as complete" (click)="markComplete(request)" [disabled]="isProcessingAction">
+                  <mat-icon>check_circle</mat-icon>
+                </button>
+              </div>
+            </td>
+          </ng-container>
+          
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <div class="empty-table" *ngIf="!isLoadingSubmissionRequests && !dataSource.data.length">No requests found.</div>
+        <mat-spinner class="table-loader" [diameter]="30" color="accent" *ngIf="isLoadingSubmissionRequests"></mat-spinner>
+      </div>
+  </mat-card>
+  <mat-paginator [pageSizeOptions]="[20, 50, 100]" [showFirstLastButtons]="true"
+                  [disabled]="isLoadingSubmissionRequests"></mat-paginator>
+
+  <div fxLayout fxLayoutAlign="space-between center" class="page-header">
+    <h2>Uploaded Documents</h2>
+    <button mat-raised-button color="primary" (click)="uploadDocument()" *ngIf="!isAuthenticated">
+      UPLOAD DOCUMENT
+    </button>
+  </div>
+  <mat-card>
+  <div class="table-container">
+    <table mat-table [dataSource]="uploadsDataSource">
+      <ng-container matColumnDef="document_title">
+        <th mat-header-cell *matHeaderCellDef> Document Title </th>
+        <td mat-cell *matCellDef="let upload"> {{upload.document_title}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="created_at">
+        <th mat-header-cell *matHeaderCellDef> Created at </th>
+        <td mat-cell *matCellDef="let request"> {{request.created_at | date}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let upload">
+          <div class="table-actions">
+            <button mat-icon-button color="primary" (click)="downloadDocument(upload.document)" [disabled]="isProcessingAction">
+              <mat-icon>download</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteDocument(upload.id)" [disabled]="isProcessingAction" *ngIf="isAuthenticated">
+                <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+      
+      <tr mat-header-row *matHeaderRowDef="uploadsDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: uploadsDisplayedColumns;"></tr>
+    </table>
+    <div class="empty-table" *ngIf="!isLoadingUploads && !uploadsDataSource.data.length">No uploads found.</div>
+    <mat-spinner class="table-loader" [diameter]="30" color="accent" *ngIf="isLoadingUploads"></mat-spinner>
+  </div>
+  </mat-card>
+  <mat-paginator [pageSizeOptions]="[20, 50, 100]" [showFirstLastButtons]="true"
+              [disabled]="isLoadingUploads"></mat-paginator>
+</div>

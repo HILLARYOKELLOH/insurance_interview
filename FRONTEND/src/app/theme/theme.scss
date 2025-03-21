@@ -1,0 +1,52 @@
+@use "@angular/material" as mat;
+
+@include mat.all-component-typographies();
+@include mat.core();
+
+$typography: mat.define-typography-config(
+  $font-family: 'Montserrat, sans-serif',
+  $headline-1: mat.define-typography-level(24px, 32px, 600),
+  $headline-2: mat.define-typography-level(20px, 32px, 600),
+  $headline-3: mat.define-typography-level(18px, 32px, 600),
+  $headline-4: mat.define-typography-level(16px, 32px, 600),
+  $headline-5: mat.define-typography-level(14px, 32px, 600),
+  $headline-6: mat.define-typography-level(12px, 32px, 600),
+  $subtitle-1: mat.define-typography-level(18px, 32px, 400),
+  $subtitle-2: mat.define-typography-level(14px, 32px, 400),
+  $body-1: mat.define-typography-level(12px, 20px, 400),
+  $body-2: mat.define-typography-level(12px, 24px, 500),
+  $caption: mat.define-typography-level(12px, 20px, 400),
+  $button: mat.define-typography-level(12px, 12px, 500),
+  $overline: null
+);
+
+$primary: mat.$blue-palette;
+$accent: mat.$pink-palette;
+
+$app-theme: mat.define-light-theme(
+    (
+      color: (
+        primary: mat.define-palette($primary),
+        accent: mat.define-palette($accent)
+      ),
+      typography: $typography,
+      density: 0
+    )
+);
+
+@include mat.all-component-themes($app-theme);
+
+// $app-dark-theme: mat.define-dark-theme(
+//     (
+//       color: (
+//         primary: mat.define-palette($palette),
+//         accent: mat.define-palette(mat.$deep-orange-palette)
+//       ),
+//       typography: $typography,
+//       density: 0
+//     )
+// );
+
+// .darkMode {
+//   @include mat.all-component-colors($app-dark-theme);
+// }

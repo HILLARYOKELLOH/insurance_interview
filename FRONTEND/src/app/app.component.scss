@@ -1,0 +1,50 @@
+@import 'theme/theme.scss';
+
+.sidenav-container {
+    height: 100vh;
+    background-color: #f5f5f5;
+    overflow-y: hidden;
+
+    mat-sidenav {
+        background-color: #fff;
+        box-shadow: 1px 0px 5px 0px rgba(0, 0, 0, 0.25);
+        width: 240px;
+
+        &.closed {
+            width: 68px;
+        }
+
+        .logo {
+            cursor: pointer;
+            padding: 16px 8px;
+            padding-bottom: 0;
+
+            img.logo-text {
+                width: 140px;
+            }
+
+            img.logo-icon {
+                width: 36px;
+                margin-left: 6px;
+            }
+
+            .logo-img {
+                width: 140px;
+            }
+        }
+    }
+
+    mat-sidenav-content {
+        &.menuShrink {
+            margin-left: 68px !important;
+        }
+
+        &.authenticated {
+            padding: 20px;
+
+            .footer {
+                margin-top: 50px;
+            }
+        }
+    }
+}

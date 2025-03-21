@@ -1,0 +1,44 @@
+<div id="login" fxLayout="row">
+    <div id="form" fxFlex="36" fxLayout="column" fxLayoutAlign="space-between">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="logo">Insurance<span>Portal</span></span>
+            <!-- <img src="/assets/images/logo.png" class="logo"> -->
+        </div>
+        <div class="form-container">
+            <h1>Welcome!</h1>
+            <p>
+                Log in to access and manage Insurance Portal.
+            </p>
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <mat-form-field appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" formControlName="email">
+                    <mat-error>{{getErrorMessage('email')}}</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password">
+                    <mat-icon color="primary" matSuffix (click)="showPassword = !showPassword">
+                        {{showPassword ? 'visibility_off' : 'visibility'}}
+                    </mat-icon>
+                    <mat-error>{{getErrorMessage('password')}}</mat-error>
+                </mat-form-field>
+                <button type="submit" mat-raised-button color="primary" [disabled]="isLoading">
+                    <span *ngIf="!isLoading">Log in</span>
+                    <mat-spinner color="accent" *ngIf="isLoading" diameter="20"></mat-spinner>
+                </button>
+            </form>
+            <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+                <span>DON'T HAVE AN ACCOUNT?</span>
+                <button mat-stroked-button color="accent" routerLink="/register">CREATE AN ACCOUNT</button>
+            </div>
+        </div>
+        <div class="form-footer" fxLayout="row" fxLayoutAlign="space-between flex-end">
+            <span>&copy;2024 Docuscreen</span>
+            <span><a href="">Terms and Conditions</a></span>
+        </div>
+    </div>
+    <div fxFlex="64">
+        <div id="banner"></div>
+    </div>
+</div>

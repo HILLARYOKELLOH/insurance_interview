@@ -1,0 +1,67 @@
+<div id="menu" [class.closed]="!isMenuExpanded">
+    <mat-accordion [multi]="false" fxLayout="column" fxLayoutAlign="space-between">
+        <mat-nav-list>
+            <div *ngFor="let menu of topMenu">
+                <ng-container *ngIf="!menu.hidden">
+                    <a mat-list-item *ngIf="!menu.children" [routerLink]="menu.path" [class.active]="isRouteActive(menu)">
+                        <div fxLayout fxLayoutGap="8px" fxLayoutAlign="default center" class="menu-item-content">
+                            <mat-icon>{{menu.icon}}</mat-icon>
+                            <span class="label">{{menu.name}}</span>
+                        </div>
+                    </a>
+                    <mat-expansion-panel *ngIf="menu.children">
+                        <mat-expansion-panel-header>
+                            <div fxLayout fxLayoutGap="8px" fxLayoutAlign="default center" class="menu-item-content">
+                                <mat-icon>{{menu.icon}}</mat-icon>
+                                <span class="label">{{menu.name}}</span>
+                            </div>
+                        </mat-expansion-panel-header>
+                        <mat-nav-list>
+                            <a mat-list-item *ngFor="let subMenu of menu.children" [routerLink]="subMenu.path" [class.active]="isRouteActive(subMenu)">
+                                <div fxLayout fxLayoutGap="8px" fxLayoutAlign="default center" class="menu-item-content">
+                                    <mat-icon>{{subMenu.icon}}</mat-icon>
+                                    <span class="label">{{subMenu.name}}</span>
+                                </div>
+                            </a>
+                        </mat-nav-list>
+                    </mat-expansion-panel>
+                </ng-container>
+            </div>
+        </mat-nav-list>
+
+        <mat-nav-list>
+            <div *ngFor="let menu of bottomMenu">
+                <ng-container *ngIf="!menu.hidden">
+                    <a mat-list-item *ngIf="!menu.children" [routerLink]="menu.path" [class.active]="isRouteActive(menu)">
+                        <div fxLayout fxLayoutGap="8px" fxLayoutAlign="default center" class="menu-item-content">
+                            <mat-icon>{{menu.icon}}</mat-icon>
+                            <span class="label">{{menu.name}}</span>
+                        </div>
+                    </a>
+                    <mat-expansion-panel *ngIf="menu.children">
+                        <mat-expansion-panel-header>
+                            <div fxLayout fxLayoutGap="8px" fxLayoutAlign="default center" class="menu-item-content">
+                                <mat-icon>{{menu.icon}}</mat-icon>
+                                <span class="label">{{menu.name}}</span>
+                            </div>
+                        </mat-expansion-panel-header>
+                        <mat-nav-list>
+                            <a mat-list-item *ngFor="let subMenu of menu.children" [routerLink]="subMenu.path" [class.active]="isRouteActive(menu)">
+                                <div fxLayout fxLayoutGap="8px" fxLayoutAlign="default center" class="menu-item-content">
+                                    <mat-icon>{{subMenu.icon}}</mat-icon>
+                                    <span class="label">{{subMenu.name}}</span>
+                                </div>
+                            </a>
+                        </mat-nav-list>
+                    </mat-expansion-panel>
+                </ng-container>
+            </div>
+            <a mat-list-item (click)="logout()">
+                <div fxLayout fxLayoutGap="8px" fxLayoutAlign="default center" class="menu-item-content">
+                    <mat-icon>power_settings_new</mat-icon>
+                    <span class="label">Logout</span>
+                </div>
+            </a>
+        </mat-nav-list>
+    </mat-accordion>
+</div>

@@ -1,0 +1,46 @@
+#home {
+    box-sizing: border-box;
+    overflow-x: hidden;
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #004080;
+        color: white;
+        padding: 1rem;
+    }
+    
+    .logo img {
+        width: 160px;
+    }
+    
+    .nav-links {
+        display: flex;
+        gap: 1rem;
+    }
+    
+    .nav-links a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+        color: #ffcc00;
+    }
+    
+    /* Container with content */
+    .qa-section {
+        max-width: 800px;
+        margin: auto;
+        margin-bottom: 100px;
+        padding: 40px;
+
+        p {
+            margin-bottom: 20px;
+        }
+    }
+    
+}

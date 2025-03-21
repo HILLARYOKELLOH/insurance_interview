@@ -1,0 +1,26 @@
+<div class="popup-content">
+    <h3>Send Submission Request</h3>
+    <form [formGroup]="createRequestForm" (ngSubmit)="createRequest()">
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput readonly type="email" formControlName="email">
+            <mat-error>{{getErrorMessage('email')}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Document Title</mat-label>
+            <mat-select formControlName="document_title">
+                <mat-option *ngFor="let type of documentTypes" [value]="type.title">{{type.title}}</mat-option>
+            </mat-select>
+            <mat-error>{{getErrorMessage('document_title')}}</mat-error>
+        </mat-form-field>
+        
+        <div fxLayout fxLayoutAlign="space-between">
+            <button mat-stroked-button mat-dialog-close [disabled]="isLoading">Cancel</button>
+            <button type="submit" mat-raised-button color="primary" [disabled]="isLoading">
+                <span *ngIf="!isLoading">Send</span>
+                <mat-spinner color="accent" *ngIf="isLoading" diameter="20"></mat-spinner>
+            </button>
+        </div>
+    </form>
+</div>

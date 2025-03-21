@@ -1,0 +1,18 @@
+<div class="popup-content">
+    <h3>Create Document Type</h3>
+    <form [formGroup]="createTypeForm" (ngSubmit)="createType()">
+        <mat-form-field appearance="fill">
+            <mat-label>Title</mat-label>
+            <input matInput type="text" formControlName="title">
+            <mat-error>{{getErrorMessage('title')}}</mat-error>
+        </mat-form-field>
+        
+        <div fxLayout fxLayoutAlign="space-between">
+            <button mat-stroked-button mat-dialog-close [disabled]="isLoading">Cancel</button>
+            <button type="submit" mat-raised-button color="primary" [disabled]="isLoading">
+                <span *ngIf="!isLoading">Create</span>
+                <mat-spinner color="accent" *ngIf="isLoading" diameter="20"></mat-spinner>
+            </button>
+        </div>
+    </form>
+</div>

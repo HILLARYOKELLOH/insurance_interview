@@ -1,0 +1,10 @@
+<div class="toast-container" (mouseenter)="toasterHover()" (mouseleave)="toasterNoHover()">
+  <mat-icon class="toast-icon">{{getToastIcon()}}</mat-icon>
+  <div class="toast-content">
+    <span class="toast-message">{{data.message}}</span>
+    <span class="toast-legend" *ngIf="data.legend">{{data.legend}}</span>
+  </div>
+  <button id="toast-close-btn" (click)="closeToast()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>

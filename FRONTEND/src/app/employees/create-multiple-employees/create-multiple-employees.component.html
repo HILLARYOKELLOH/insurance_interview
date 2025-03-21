@@ -1,0 +1,31 @@
+<div class="popup-content">
+    <h3>Create Multiple Employees</h3>
+    <form [formGroup]="createEmployeeForm" (ngSubmit)="createEmployees()">
+        <mat-form-field appearance="fill">
+            <mat-label>Employee type</mat-label>
+            <mat-select formControlName="is_internal">
+                <mat-option [value]="true">Internal</mat-option>
+                <mat-option [value]="false">External</mat-option>
+            </mat-select>
+            <mat-error>{{getErrorMessage('is_internal')}}</mat-error>
+        </mat-form-field>
+
+        <div class="file-upload">
+            <button mat-stroked-button color="primary" (click)="downloadTemplate()">Download template</button>
+            &nbsp;
+            <button mat-stroked-button color="accent" (click)="fileUpload.click()">Select file</button>
+            &nbsp;
+            <i>Supported types: xls, xlsx, csv</i>
+            <input class="hidden" type="file" (change)="onFileSelected($event)" #fileUpload accept=".xls, .xlsx, .csv">
+            <div *ngIf="file">File selected!</div>
+        </div>
+        
+        <div fxLayout fxLayoutAlign="space-between">
+            <button mat-stroked-button mat-dialog-close [disabled]="isLoading">Cancel</button>
+            <button type="submit" mat-raised-button color="primary" [disabled]="isLoading">
+                <span *ngIf="!isLoading">Create</span>
+                <mat-spinner color="accent" *ngIf="isLoading" diameter="20"></mat-spinner>
+            </button>
+        </div>
+    </form>
+</div>

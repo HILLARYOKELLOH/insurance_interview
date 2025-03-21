@@ -1,0 +1,34 @@
+@import '../../theme/theme.scss';
+
+mat-card {
+    border-top: 3px solid map-get($primary, 700);
+
+    .table-container {
+        overflow-x: auto;
+
+        mat-chip {
+            pointer-events: none;
+            
+            &.mat-green {
+                background-color: #abffc7;
+            }
+        }
+    }
+
+    .url-text {
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        mat-icon {
+            font-size: 14px;
+
+            &.mat-icon {
+                width: 14px;
+                height: 14px;
+            }
+        }
+    }
+}

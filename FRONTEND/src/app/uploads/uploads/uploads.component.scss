@@ -1,0 +1,20 @@
+@import '../../theme/theme.scss';
+
+mat-card {
+    border-top: 3px solid map-get($primary, 700);
+
+    .table-container {
+        overflow-x: auto;
+
+        .patient-cell {
+            height: 32px;
+            line-height: 12px;
+        
+            span.sec {
+                font-size: 10px;
+                color: #646464;
+                line-height: 10px;
+            }
+        }
+    }
+}

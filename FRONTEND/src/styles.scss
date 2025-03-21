@@ -1,0 +1,143 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'app/theme/theme.scss';
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+}
+
+p {
+    color: #646464;
+    font-size: 14px;
+}
+
+mat-error {
+    font-size: 10px;
+}
+
+mat-form-field {
+    margin-bottom: 8px;
+}
+
+th {
+    font-size: 12px;
+    font-weight: 600 !important;
+    white-space: nowrap;
+}
+
+.empty-table {
+    font-size: 12px;
+    color: #777;
+    text-align: center;
+    padding: 16px 0;
+}
+
+mat-spinner.table-loader {
+    margin: 16px auto;
+}
+
+mat-paginator {
+    font-size: 10px;
+    margin-top: 8px;
+    background: none !important;
+    color: #777 !important;
+
+    mat-form-field {
+        width: 60px !important;
+        
+        .mat-mdc-text-field-wrapper {
+            padding: 0;
+            border-bottom: 1px solid #777;
+        }
+
+        .mdc-text-field--outlined {
+            --mdc-outlined-text-field-outline-width: 0;
+            --mdc-outlined-text-field-focus-outline-width: 0;
+            --mdc-outlined-text-field-container-shape: 0;
+        }
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+    border-top: 3px solid map-get($primary, A700)
+}
+
+.popup-content {
+    padding: 24px
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.page-header {
+    height: 40px;
+    margin-bottom: 12px;
+
+    h2, h3, h4 {
+        margin: 0;
+    }
+}
+
+.table-card-content {
+    padding: 16px;
+}
+
+.keyValueItems {
+    width: 100%;
+    max-width: 920px;
+    margin-bottom: 32px;
+
+    .label {
+        color: #aaa;
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+
+    .value {
+        font-size: 16px;
+        color: black;
+    }
+}
+
+#import-area {
+    height: 160px;
+    padding: 12px 0;
+  
+    .dz-wrapper {
+      height: 100%;
+  
+      .dz-message {
+        border: 2px dashed map-get($primary, 300);
+        border-radius: 4px;
+        background-color: #efefef;
+        margin: 0;
+        height: calc(100% - 8px);
+        min-width: 100%;
+      }
+
+      .dz-text {
+        color: map-get($primary, 300);
+      }
+    }
+  }
+
+@media (max-width: 768px) {
+    .keyValueItems {
+        max-width: 100%;
+
+        .item {
+            max-width: 33.33% !important;
+        }
+    }
+}

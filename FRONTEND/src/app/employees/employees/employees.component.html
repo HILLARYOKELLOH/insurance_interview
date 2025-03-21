@@ -1,0 +1,91 @@
+<div fxLayout fxLayoutAlign="space-between center" class="page-header"> 
+    <h2>Employees</h2>
+    <button mat-stroked-button [matMenuTriggerFor]="menu">
+      <div fxLayout fxLayoutAlign="default center" fxLayoutGap="40px">
+          <span>Actions</span>
+          <mat-icon>expand_more</mat-icon>
+      </div>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="createEmployee()" [disabled]="isLoading">Create single employee</button>
+      <button mat-menu-item (click)="createMultipleEmployees()" [disabled]="isLoading">Create multiple employees</button>
+      <button mat-menu-item (click)="createBulkSubmissionRequest()" [disabled]="isLoading || selection.selected.length === 0">Send multiple document requests</button>
+    </mat-menu>
+</div>
+<div class="filters" fxLayout fxLayoutGap="24px">
+  <div class="search" fxFlex="25">
+    <mat-form-field appearance="fill">
+      <mat-label>Employee type</mat-label>
+      <mat-select [formControl]="internalFilter" (selectionChange)="refreshGrid()">
+        <mat-option value="">All</mat-option>
+        <mat-option [value]="true">Internal</mat-option>
+        <mat-option [value]="false">External</mat-option>
+      </mat-select>
+  </mat-form-field>
+  </div>
+</div>
+<mat-card>
+  <div class="table-container">
+      <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox color="primary" [disabled]="isLoading"
+              (change)="$event ? masterToggle() : null"
+              [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()"
+            >
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let employee">
+            <mat-checkbox color="primary"
+              (click)="$event.stopPropagation()"
+              (change)="$event ? selection.toggle(employee) : null"
+              [checked]="selection.isSelected(employee)"
+            >
+            </mat-checkbox>
+          </td>
+        </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let employee"> {{employee.first_name}} {{employee.last_name}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let employee"> {{employee.email}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="dob">
+            <th mat-header-cell *matHeaderCellDef> Date of Birth </th>
+            <td mat-cell *matCellDef="let employee"> {{employee.dob | date}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="is_internal">
+            <th mat-header-cell *matHeaderCellDef> Employee type </th>
+            <td mat-cell *matCellDef="let employee"> {{employee.is_internal ? 'Internal' : 'External'}} {{employee.ext_organization ? '(' + employee.ext_organization + ')' : ''}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let employee">
+              <div class="table-actions">
+                <button mat-icon-button color="primary" (click)="$event.stopPropagation(); editEmployee(employee)" [disabled]="isProcessingAction">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="$event.stopPropagation(); deleteEmployee(employee.id)" [disabled]="isProcessingAction">
+                    <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let employee; columns: displayedColumns;" [routerLink]="employee.id"></tr>
+      </table>
+      <div class="empty-table" *ngIf="!isLoading && !dataSource.data.length">No employees found.</div>
+      <mat-spinner class="table-loader" [diameter]="30" color="accent" *ngIf="isLoading"></mat-spinner>
+    </div>
+</mat-card>
+<mat-paginator [pageSizeOptions]="[20, 50, 100]" [showFirstLastButtons]="true"
+                [disabled]="isLoading || !paginator.length"></mat-paginator>

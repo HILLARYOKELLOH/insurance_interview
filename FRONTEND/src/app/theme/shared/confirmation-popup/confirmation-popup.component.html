@@ -1,0 +1,6 @@
+<h1 mat-dialog-title>Please confirm</h1>
+<mat-dialog-content>{{data}}</mat-dialog-content>
+<mat-dialog-actions fxLayout fxLayoutAlign="space-between">
+  <button mat-stroked-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true">Confirm</button>
+</mat-dialog-actions>

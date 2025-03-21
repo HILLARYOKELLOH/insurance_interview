@@ -1,0 +1,30 @@
+<div fxLayout fxLayoutAlign="space-between center" class="page-header"> 
+  <h2>Document Types</h2>
+  <button mat-mini-fab color="primary" (click)="createType()" matTooltip="Create document type"><mat-icon>add</mat-icon></button>
+</div>
+<mat-card>
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Title </th>
+        <td mat-cell *matCellDef="let document"> {{document.title}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let document">
+          <div class="table-actions">
+            <button mat-icon-button color="warn" (click)="deleteType(document.id)" matTooltip="Delete document type" [disabled]="document.title === 'DIPLOMA CERTIFICATE'">
+                <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let user; columns: displayedColumns;"></tr>
+    </table>
+    <div class="empty-table" *ngIf="!isLoading && !dataSource.data.length">No document types found.</div>
+    <mat-spinner class="table-loader" [diameter]="30" color="accent" *ngIf="isLoading"></mat-spinner>
+  </div>
+</mat-card>

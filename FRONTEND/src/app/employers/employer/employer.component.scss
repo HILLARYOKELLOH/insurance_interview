@@ -1,0 +1,81 @@
+@import '../../theme/theme.scss';
+
+.employeeUser {
+    max-width: 1000px;
+    margin: auto;
+    padding: 24px 0;
+}
+
+span.logo {
+    font-weight: 700;
+    line-height: 40px;
+    margin-bottom: 40px;
+
+    span {
+        color: map-get($primary, 700);
+    }
+}
+
+mat-card.user-details {
+    border-top: none;
+    padding: 20px;
+    margin-bottom: 28px;
+
+    .card-title {
+        margin-bottom: 20px;
+
+        h3 {
+            margin: 0;
+        }
+
+        mat-icon {
+            color: map-get($primary, 700)
+        }
+    }
+
+    .keyValueItems {
+        margin-left: 28px;
+    }
+
+    .image {
+        img {
+            height: 120px;
+            width: 120px;
+            object-fit: cover;
+            border: 1px solid #ccc;
+        }
+    }
+
+    .variation {
+        mat-divider {
+            margin-bottom: 20px;
+        }
+    }
+}
+
+mat-card {
+    border-top: 3px solid map-get($primary, A700);
+
+    .table-container {
+        overflow-x: auto;
+
+        a {
+            color: inherit;
+
+            &:hover {
+                color: map-get($primary, A700);
+            }
+        }
+
+        .patient-cell {
+            height: 32px;
+            line-height: 12px;
+        
+            span.sec {
+                font-size: 10px;
+                color: #646464;
+                line-height: 10px;
+            }
+        }
+    }
+}

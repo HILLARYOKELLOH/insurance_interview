@@ -1,0 +1,37 @@
+<div class="popup-content">
+    <h3>Create Insurance Policy</h3>
+    <form [formGroup]="createUserForm" (ngSubmit)="createUser()">
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" formControlName="name">
+            <mat-error>{{getErrorMessage('name')}}</mat-error>
+        </mat-form-field>
+
+        <div fxLayout fxLayoutGap="20px">
+            <mat-form-field appearance="fill">
+                <mat-label>Email Address</mat-label>
+                <input matInput type="email" formControlName="email">
+                <mat-error>{{getErrorMessage('email')}}</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Phone</mat-label>
+                <input matInput type="text" formControlName="phone">
+                <mat-error>{{getErrorMessage('phone')}}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Address</mat-label>
+            <input matInput type="text" formControlName="address">
+            <mat-error>{{getErrorMessage('address')}}</mat-error>
+        </mat-form-field>
+
+        <div fxLayout fxLayoutAlign="space-between">
+            <button mat-stroked-button mat-dialog-close [disabled]="isLoading">Cancel</button>
+            <button type="submit" mat-raised-button color="primary" [disabled]="isLoading">
+                <span *ngIf="!isLoading">Create</span>
+                <mat-spinner color="accent" *ngIf="isLoading" diameter="20"></mat-spinner>
+            </button>
+        </div>
+    </form>
+</div>

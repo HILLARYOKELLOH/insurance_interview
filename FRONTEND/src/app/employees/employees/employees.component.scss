@@ -1,0 +1,32 @@
+@import '../../theme/theme.scss';
+
+mat-card {
+    border-top: 3px solid map-get($primary, 700);
+
+    .table-container {
+        overflow-x: auto;
+
+        tr.mat-mdc-row {
+            cursor: pointer;
+
+            &:hover {
+                background-color: map-get($primary, 50) !important;
+            }
+        }
+
+        .mat-column-select {
+            width: 48px;
+        }
+
+        .patient-cell {
+            height: 32px;
+            line-height: 12px;
+        
+            span.sec {
+                font-size: 10px;
+                color: #646464;
+                line-height: 10px;
+            }
+        }
+    }
+}

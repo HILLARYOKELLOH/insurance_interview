@@ -1,0 +1,26 @@
+<div class="popup-content">
+    <h3>Upload Document</h3>
+    <form [formGroup]="uploadDocumentForm" (ngSubmit)="uploadDocument()">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Document Title</mat-label>
+            <input matInput type="text" formControlName="document_title">
+            <mat-error>{{getErrorMessage('document_title')}}</mat-error>
+        </mat-form-field>
+
+        <div class="file-upload">
+            <button mat-stroked-button color="accent" (click)="fileUpload.click()">Select file</button>
+            &nbsp;<i>Supported types: docx, doc, pdf</i>
+            <input class="hidden" type="file" (change)="onFileSelected($event)" #fileUpload accept=".pdf, .doc, .docx">
+            <div *ngIf="file">File selected!</div>
+        </div>
+        
+        <div fxLayout fxLayoutAlign="space-between">
+            <button mat-stroked-button mat-dialog-close [disabled]="isLoading">Cancel</button>
+            <button type="submit" mat-raised-button color="primary" [disabled]="isLoading">
+                <span *ngIf="!isLoading">Upload</span>
+                <mat-spinner color="accent" *ngIf="isLoading" diameter="20"></mat-spinner>
+            </button>
+        </div>
+    </form>
+</div>

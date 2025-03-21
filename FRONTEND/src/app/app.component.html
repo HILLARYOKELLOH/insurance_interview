@@ -1,0 +1,13 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav mode="side" opened="true" disableClose="true" *ngIf="(isLoggedIn$ | async) && !isRootPage()" [class.closed]="!isMenuExpanded">
+    <div class="logo">
+      <img *ngIf="isMenuExpanded" src="/assets/images/logo-alt.png" class="logo-img" />
+      <img src="/assets/images/favicon.png" alt="Logo" class="logo-icon" *ngIf="!isMenuExpanded">
+    </div>
+    <theme-menu [isMenuExpanded]="isMenuExpanded"></theme-menu>
+  </mat-sidenav>
+  <mat-sidenav-content [class.authenticated]="(isLoggedIn$ | async) && !isRootPage()" [class.menuShrink]="!isMenuExpanded">
+      <router-outlet></router-outlet>
+      <div class="footer"></div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

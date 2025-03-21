@@ -1,0 +1,16 @@
+@import '../theme/theme.scss';
+
+#home {
+    height: calc(100vh - 60px);
+    text-align: center;
+
+    img {
+        max-width: 400px;
+    }
+
+    p {
+        span {
+            color: map-get($accent, 500);
+        }
+    }
+}
